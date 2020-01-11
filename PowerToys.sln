@@ -90,7 +90,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "previewpane", "src\modules\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common", "src\modules\previewpane\common\common.csproj", "{AF2349B8-E5B6-4004-9502-687C1C7730B1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "prevpane", "prevpane", "{149A81F1-867C-4C41-897B-97EA0C50F36B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "previewpane", "previewpane", "{149A81F1-867C-4C41-897B-97EA0C50F36B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

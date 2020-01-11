@@ -25,7 +25,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 }
 
 // PowerToy Winodws Explore File Preview Settings.
-struct SampleSettings
+struct PowerPreviewSettings
 {
     bool svgPreview_in_explr_IsEnabled = true;
     bool svgPreview_in_prevpane_IsEnabled = true;
@@ -79,23 +79,30 @@ public:
         // Create a Settings object.
         PowerToysSettings::Settings settings(hinstance, get_name());
         settings.set_description(L"These settings allows you to manage your Windows File Explorer Addons.");
+        settings.set_icon_key(L"pt-explorer-files-preview");
+
+        // Add Sub-Header
+        settings.add_header_1(L"Explorer Icons");
 
         // Add a toggle to manage the renders for the svg icons in the explorer.
         settings.add_bool_toogle(
             PowerPreviewSettings.EXPLR_RENDRSVG_BOOL_TOGGLE, // property name.
-            L"Explorer Icons: Render SVG images", 
+            L"Render SVG images", 
             PowerPreviewSettings.svgPreview_in_explr_IsEnabled);
+
+        // Add Sub-Header
+        settings.add_header_1(L"Preview Pane");
 
         // Add a toggle to manage the render for the SVG preview pane.
         settings.add_bool_toogle(
             PowerPreviewSettings.PREVPANE_RENDRSVG_BOOL_TOGGLE, 
-            L"Preview Pane: Show SVG", 
+            L"Show SVG", 
             PowerPreviewSettings.svgPreview_in_prevpane_IsEnabled);
 
         // Add a toggle to manage the render for the mark down preview pane.
         settings.add_bool_toogle(
             PowerPreviewSettings.PREVPANE_RENDMD_BOOL_TOGGLE, 
-            L"Preview Pane: Show Markdown", 
+            L"Show Markdown", 
             PowerPreviewSettings.mdPreview_in_prevpane_IsEnabled);
 
         return settings.serialize_to_buffer(buffer, buffer_size);
@@ -177,20 +184,7 @@ public:
     // Handle incoming event, data is event-specific
     virtual intptr_t signal_event(const wchar_t* name, intptr_t data) override
     {
-        if (wcscmp(name, ll_keyboard) == 0)
-        {
-            auto& event = *(reinterpret_cast<LowlevelKeyboardEvent*>(data));
-            // Return 1 if the keypress is to be suppressed (not forwarded to Windows),
-            // otherwise return 0.
-            return 0;
-        }
-        else if (wcscmp(name, win_hook_event) == 0)
-        {
-            auto& event = *(reinterpret_cast<WinHookEvent*>(data));
-            // Return value is ignored
-            return 0;
-        }
-        return 0;
+        return 1;
     }
 
     virtual void register_system_menu_helper(PowertoySystemMenuIface* helper) override {}
