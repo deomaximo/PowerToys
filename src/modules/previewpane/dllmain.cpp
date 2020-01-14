@@ -57,7 +57,7 @@ public:
     virtual void destroy() override
     {
         delete this;
-        Trace::FilePreviewerIsDisabled();
+        Trace::Destroyed();
     }
 
     // Return the display name of the powertoy, this will be cached
@@ -78,11 +78,11 @@ public:
 
         // Create a Settings object.
         PowerToysSettings::Settings settings(hinstance, get_name());
-        settings.set_description(L"These settings allows you to manage your Windows File Explorer Addons.");
+        settings.set_description(L"These settings allow you to manage your Windows File Explorer Addons.");
         settings.set_icon_key(L"pt-explorer-files-preview");
 
         // Add Sub-Header
-        settings.add_header_1(L"Explorer Icons");
+        settings.add_header_szLarge(L"Explorer Icons");
 
         // Add a toggle to manage the renders for the svg icons in the explorer.
         settings.add_bool_toogle(
@@ -91,7 +91,7 @@ public:
             PowerPreviewSettings.svgPreview_in_explr_IsEnabled);
 
         // Add Sub-Header
-        settings.add_header_1(L"Preview Pane");
+        settings.add_header_szLarge(L"Preview Pane");
 
         // Add a toggle to manage the render for the SVG preview pane.
         settings.add_bool_toogle(

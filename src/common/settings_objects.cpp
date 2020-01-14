@@ -91,11 +91,11 @@ namespace PowerToysSettings
         m_json.GetNamedObject(L"properties").SetNamedValue(name, string);
     }
 
-    void Settings::add_header_1(std::wstring_view value)
+    void Settings::add_header_szLarge(std::wstring_view value)
     {
         json::JsonObject headerText;
         headerText.SetNamedValue(L"display_name", json::value(value));
-        headerText.SetNamedValue(L"editor_type", json::value(L"header_1"));
+        headerText.SetNamedValue(L"editor_type", json::value(L"header_large"));
 
          m_json.GetNamedObject(L"properties").SetNamedValue(value, headerText);
     }
