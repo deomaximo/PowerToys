@@ -3,7 +3,7 @@
 #include <interface/lowlevel_keyboard_event_data.h>
 #include <interface/win_hook_event_data.h>
 #include "trace.h"
-#include <common/settings_objects.h>
+#include <./settings_objects.h>
 
 extern "C" IMAGE_DOS_HEADER __ImageBase;
 
@@ -82,7 +82,7 @@ public:
         settings.set_icon_key(L"pt-explorer-files-preview");
 
         // Add Sub-Header
-        settings.add_header_szLarge(L"Explorer Icons");
+        settings.add_header_szLarge(L"explorer_icons_group_settings_text" , L"Settings Group Header Text" ,L"Explorer Icons");
 
         // Add a toggle to manage the renders for the svg icons in the explorer.
         settings.add_bool_toogle(
@@ -91,7 +91,7 @@ public:
             PowerPreviewSettings.svgPreview_in_explr_IsEnabled);
 
         // Add Sub-Header
-        settings.add_header_szLarge(L"Preview Pane");
+        settings.add_header_szLarge(L"preview_pane_group_settings_text", L"Settings Group Header Text", L"Preview Pane");
 
         // Add a toggle to manage the render for the SVG preview pane.
         settings.add_bool_toogle(
